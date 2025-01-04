@@ -1,0 +1,9 @@
+[package]
+name = "html_parser"
+version = "0.1.0"
+edition = "2021"
+authors = [ "ashrock <dlwotjr2@gmail.com>" ]
+
+[dependencies]
+clap = { version = "4.5.23", features = ["derive"] }
+markdown = "1.0.0-alpha.21"
