@@ -1,9 +1,7 @@
 use anyhow::Result;
 use clap::Parser;
-use std::{
-    fs::File,
-    io::{BufRead, BufReader},
-};
+use markdown::to_html;
+use std::fs;
 
 #[derive(Debug, Parser)]
 #[command(author, version, about)]
@@ -14,19 +12,13 @@ struct Args {
     files: Vec<String>,
 }
 
-fn open(filename: &str) -> Result<BufReader<File>> {
-    Ok(BufReader::new(File::open(filename)?))
-}
-
 fn run(args: Args) -> Result<()> {
     for filename in args.files {
-        match open(&filename) {
+        match fs::read_to_string(&filename) {
             Err(err) => eprintln!("Failed to open {filename}: {err}"),
             Ok(file) => {
-                for line in file.lines() {
-                    let line = line?;
-                    println!("{line}");
-                }
+                let html = to_html(&file);
+                println!("{html}")
             }
         }
     }
