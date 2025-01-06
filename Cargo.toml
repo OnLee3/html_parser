@@ -7,7 +7,7 @@ authors = [ "ashrock <dlwotjr2@gmail.com>" ]
 [dependencies]
 anyhow = "1.0.95"
 clap = { version = "4.5.23", features = ["derive"] }
-markdown = "1.0.0-alpha.21"
+markdown = { git = "https://github.com/onlee3/markdown-rs", branch = "main" }
 
 [dev-dependencies]
 assert_cmd = "2.0.16"

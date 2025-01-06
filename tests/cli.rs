@@ -3,6 +3,7 @@ use assert_cmd::Command;
 use std::fs;
 
 const HEADING: &str = "tests/inputs/heading1.md";
+const FRONTMATTER: &str = "tests/inputs/front_matter1.md";
 
 fn run(args: &[&str], expected_file: &str) -> Result<()> {
     let expected = fs::read_to_string(expected_file)?;
@@ -18,4 +19,9 @@ fn run(args: &[&str], expected_file: &str) -> Result<()> {
 #[test]
 fn heading1() -> Result<()> {
     run(&[HEADING], "tests/expected/heading1_expected")
+}
+
+#[test]
+fn front_matter1() -> Result<()> {
+    run(&[FRONTMATTER], "tests/expected/front_matter1_expected")
 }

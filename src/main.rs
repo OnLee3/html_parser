@@ -1,6 +1,5 @@
 use anyhow::Result;
 use clap::Parser;
-use html_parser::remove_frontmatter;
 use markdown::to_html;
 use std::fs;
 
@@ -18,7 +17,7 @@ fn run(args: Args) -> Result<()> {
         match fs::read_to_string(&filename) {
             Err(err) => eprintln!("Failed to open {filename}: {err}"),
             Ok(file) => {
-                let html = to_html(&remove_frontmatter(&file)?);
+                let html = to_html(&file);
                 println!("{html}")
             }
         }
